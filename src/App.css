@@ -1,17 +1,19 @@
+@font-face {
+  font-family: "Lato";
+  src: local("Lato"), url(./fonts/Lato-Light.ttf) format("truetype");
+  font-family: "Prata";
+  src: local("Prata"), url(./fonts/Prata-Regular.ttf) format("truetype");
+}
+
 .App {
-  text-align: center;
+  text-align: left;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .App-header {
   background-color: #282c34;
@@ -27,7 +29,7 @@
 .App-link {
   color: #61dafb;
 }
-
+/* 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +37,287 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+body {
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+  font-family: Lato;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Prata;
+}
+
+.logo {
+  height: 84px;
+  width: 147px;
+}
+
+.sidebar {
+  width: 20%;
+  display: block;
+  float: left;
+  position: fixed;
+  overflow: scroll;
+}
+
+.sidebar > div {
+  padding: 23px 45px 23px 45px;
+}
+
+.main {
+  width: 80%;
+  float: left;
+  margin-left: 20%;
+}
+
+.sidebar .nav-items.main {
+  margin-left: 0px !important;
+}
+
+.sidebar .nav-items {
+  width: 100%;
+  font-size: 18px;
+  color: #777;
+  padding: 0.3em 0px;
+  font-weight: 300;
+}
+
+.social-foot {
+  margin-top: 30px;
+}
+
+.social-foot svg {
+  font-size: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.social-foot svg:hover {
+  font-size: 26px;
+  color: #42446e;
+}
+
+.copyright {
+  margin-top: 0px;
+}
+
+.company-foot {
+  margin-top: 0px;
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+
+.sidebar li {
+  list-style: none;
+}
+
+.sidebar .nav-items:hover {
+  color: #42446e;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.sidebar hr {
+  border: 1px solid #f1f1f1;
+  margin-block-start: 2em;
+}
+
+.home .cat-box {
+  width: 250px;
+  float: left;
+  height: 270px;
+  /* box-shadow: 0px 2px 4px #6a6a6a4a; */
+  border-bottom: 2px solid #f1f1f1;
+  margin: 10px;
+}
+
+.home .cat-box img {
+  height: 143px;
+  width: 100%;
+}
+
+.cat-box .post-cat,
+.cat-box h3 {
+  padding: 5px 0px !important;
+  margin-top: 0px;
+}
+
+.home .cat-box h3 {
+  margin-bottom: 25px !important;
+}
+
+.featured {
+  width: 67%;
+  float: left;
+  padding-right: 20px;
+}
+
+.featured .cat-box h1 {
+  margin-bottom: 5px;
+}
+
+.non-featured {
+  width: 30%;
+  float: left;
+  height: auto;
+}
+
+.featured .cat-box img {
+  width: 100%;
+  height: auto;
+}
+
+.featured .cat-box h3,
+.non-featured .cat-box h3 {
+  margin-bottom: 0px;
+}
+
+.author {
+  margin-bottom: 20px;
+}
+
+.featured .author {
+  margin-bottom: 10px;
+}
+
+.featured .cat-box {
+  width: 100%;
+  float: left;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.non-featured .cat-box {
+  width: 100%;
+  float: left;
+  height: auto;
+  border-bottom: 2px dotted #f1f1f1;
+  margin: 10px 0px;
+}
+
+.page-title-desc {
+  width: 97%;
+  padding-left: 0px;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 10px;
+}
+
+.featured .cat-box {
+  margin: 0px;
+}
+
+.more-btn .main {
+  margin: 10px 0px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #999;
+}
+
+.nav-items.foot {
+  color: #8dccfa;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.article {
+  width: 68%;
+  float: left;
+  padding-right: 20px;
+}
+
+@supports (position: sticky) {
+  .ads {
+    display: block;
+    width: 320px;
+    float: left;
+    position: fixed;
+    top: 10;
+    right: 0;
+  }
+}
+
+.ads .cat-box img {
+  width: 90%;
+  height: auto;
+}
+
+.latest {
+  width: 100%;
+  float: left;
+}
+
+.post {
+  width: 100%;
+  display: inline-block;
+  padding: 20px 0px;
+  border-bottom: 2px solid #f1f1f1;
+}
+
+.post-meta {
+  width: 31%;
+  float: left;
+  padding-right: 20px;
+}
+
+.post-title {
+  margin-top: 0px;
+}
+
+.post-content {
+  width: 30%;
+  float: left;
+  padding-right: 20px;
+  height: 100px;
+}
+
+.post-content > div {
+  width: 100%;
+  float: left;
+  padding-right: 10px;
+  white-space: pre-line;
+  line-height: 1.4;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-width: 100%;
+  margin: 0 auto;
+  color: #777;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.post-author {
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.post-time-date {
+  font-size: 13px;
+  font-weight: 400;
+  color: #777;
+  cursor: pointer;
+}
+
+.post-image {
+  width: 33%;
+  float: left;
+}
+
+.post-image img {
+  width: 100%;
 }
