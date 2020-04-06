@@ -1,17 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import "../App.css";
-import Sidebar from "./Sidebar";
-// import { Route, Switch, } from "react-router-dom";
+// import Sidebar from "./Sidebar";
+// import { Route, Switch } from "react-router-dom";
 
-const Terms = () => (
-  <>
-    <div className="col-3">
-      <Sidebar />
-    </div>
-    <div className="col-7">
-      <Sidebar />
-    </div>
-  </>
-);
+class Terms extends Component {
+  render() {
+    return <h1 className="page-title-desc">Terms</h1>;
+  }
+}
 
 export default Terms;

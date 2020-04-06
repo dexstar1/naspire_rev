@@ -1,17 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import "../App.css";
-import Sidebar from "./Sidebar";
-// import { Route, Switch, } from "react-router-dom";
+// import Sidebar from "./Sidebar";
+// import { Route, Switch } from "react-router-dom";
 
-const Subscription = () => (
-  <>
-    <div className="col-3">
-      <Sidebar />
-    </div>
-    <div className="col-7">
-      <Sidebar />
-    </div>
-  </>
-);
+class Subscription extends Component {
+  render() {
+    return <h1 className="page-title-desc">Subscription</h1>;
+  }
+}
 
 export default Subscription;
