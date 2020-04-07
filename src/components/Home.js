@@ -24,7 +24,7 @@ import Faq from "./Faq";
 const routes = [
   {
     path: "/",
-    main: () => <MainLayout />,
+    main: () => <Homelayout />,
   },
   {
     path: "/Insights",
