@@ -25,7 +25,7 @@ const routes = [
   {
     path: "/",
     exact: true,
-    main: () => <Homelayout />,
+    main: () => <MainLayout />,
   },
   {
     path: "/Insights",
