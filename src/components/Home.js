@@ -64,7 +64,7 @@ const routes = [
   },
 ];
 
-export default function MainLayout() {
+function MainLayout() {
   return (
     <Router>
       <div className="sidebar">
