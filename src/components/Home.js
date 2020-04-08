@@ -23,7 +23,7 @@ import Faq from "./Faq";
 
 const routes = [
   {
-    path: "/",
+    path: "/Home",
     main: () => <Homelayout />,
   },
   {
@@ -73,7 +73,7 @@ function MainLayout() {
             <img src={Logo} alt="" />
           </div>
           <li>
-            <Link to="/">
+            <Link to="/Home">
               <div className="nav-items main">Home</div>
             </Link>
           </li>
