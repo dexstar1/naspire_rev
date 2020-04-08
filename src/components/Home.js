@@ -64,6 +64,21 @@ const routes = [
   },
 ];
 
+class DefaultLayout extends React.Component {
+  render() {
+    return (
+      <Container fluid>
+        <Row>
+          <MainLayout />
+          <Homelayout />
+        </Row>
+      </Container>
+    );
+  }
+}
+
+export default DefaultLayout;
+
 function MainLayout() {
   return (
     <Router>
