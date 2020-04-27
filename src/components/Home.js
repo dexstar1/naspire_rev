@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 // import Sidebar from "./Sidebar";
 // import ReactDOM from "react-dom";
+import { FaPhone, FaEnvelope } from "react-icons/fa";
 import Logo from "../logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,7 +13,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Insights from "./Insights";
-import Advisory from "./Advisory";
+import Consulting from "./Consulting";
 import MarketResearch from "./MarketResearch";
 import Subscriptions from "./Subscriptions";
 import Resources from "./Resources";
@@ -20,11 +21,16 @@ import Opportunities from "./Opportunities";
 import Privacy from "./Privacy";
 import Terms from "./Terms";
 import Faq from "./Faq";
+import SinglePosts from "./SinglePosts";
 
 const routes = [
   {
     path: "/Home",
     main: () => <Homelayout />,
+  },
+  {
+    path: "/post/:id",
+    main: () => <SinglePosts />,
   },
   {
     path: "/Insights",
@@ -35,8 +41,8 @@ const routes = [
     main: () => <MarketResearch />,
   },
   {
-    path: "/Advisory",
-    main: () => <Advisory />,
+    path: "/Consulting",
+    main: () => <Consulting />,
   },
   {
     path: "/Subscriptions",
@@ -69,7 +75,7 @@ class DefaultLayout extends React.Component {
     return (
       <>
         <MainLayout />
-        <Homelayout />
+        {/* <Homelayout /> */}
       </>
     );
   }
@@ -101,8 +107,8 @@ function MainLayout() {
             </Link>
           </li>
           <li>
-            <Link to="/advisory">
-              <div className="nav-items main">Advisory</div>
+            <Link to="/Consulting">
+              <div className="nav-items main">Consulting</div>
             </Link>
           </li>
           <li>
@@ -121,7 +127,7 @@ function MainLayout() {
             </Link>
           </li>
           <li className="more-btn">
-            <div className="nav-items main">More</div>
+            <div className="nav-items main">More ...</div>
           </li>
           <hr></hr>
           <li>
@@ -136,7 +142,7 @@ function MainLayout() {
           </li>
           <li>
             <Link to="/Faq">
-              <div className="nav-items foot">Faq</div>
+              <div className="nav-items foot">FAQ</div>
             </Link>
           </li>
           <li>
@@ -144,8 +150,27 @@ function MainLayout() {
               <div className="nav-items foot">Careers</div>
             </Link>
           </li>
+
+          <hr></hr>
+          <li className="social-contact">
+            <div className="svg-n-text">
+              <div className="svg">
+                <FaPhone />
+              </div>
+              <div className="social-contact-text">Call Us - 08055364357</div>
+            </div>
+
+            <div className="svg-n-text">
+              <div className="svg">
+                <FaEnvelope />
+              </div>
+              <div className="social-contact-text">
+                Mail Us - vimbai@naspire.com
+              </div>
+            </div>
+          </li>
           <li className="social-foot">
-            <FontAwesomeIcon icon={faFacebook} />
+            <FontAwesomeIcon icon={faFacebook} style={{ marginLeft: "0px" }} />
             <FontAwesomeIcon icon={faInstagram} />
             <FontAwesomeIcon icon={faLinkedin} />
             <FontAwesomeIcon icon={faTwitter} />
@@ -179,12 +204,23 @@ function Homelayout() {
   return (
     <div className="home">
       <h1 className="page-title-desc">
-        <div style={{ width: "60%" }}>
-          Discover the latest business insights and industry trends in Nigeria
+        <div style={{ width: "100%", color: "#42446e", marginBottom: "-15px" }}>
+          Data is good. Insights are better.
         </div>
+        <span
+          style={{
+            width: "100%",
+            fontSize: "16px",
+            fontWeight: "400",
+            fontFamily: "Lato",
+            color: "#000",
+          }}
+        >
+          Discover the latest business insights and industry trends in Nigeria
+        </span>
       </h1>
       <div className="cat-box">
-        <img src={require("../assets/image1.jpg")} alt="" />
+        <img src={"../assets/image1.jpg"} alt="" />
         <div className="post-cat">Case Studies</div>
         <h3>The marlian market</h3>
       </div>
@@ -197,11 +233,6 @@ function Homelayout() {
         <img src={require("../assets/image3.jpg")} alt="" />
         <div className="post-cat">Public Sector</div>
         <h3>States, FG, LGA Government agencies, BOI, SMEDAN</h3>
-      </div>
-      <div className="cat-box">
-        <img src={require("../assets/image4.jpg")} alt="" />
-        <div className="post-cat">FEET</div>
-        <h3>Footbal, Entrepreneurship, Entertainment, Technology</h3>
       </div>
       <div className="cat-box">
         <img src={require("../assets/image5.jpg")} alt="" />
@@ -217,11 +248,6 @@ function Homelayout() {
         <img src={require("../assets/image7.jpg")} alt="" />
         <div className="post-cat">Industry Scoop</div>
         <h3>Beer industry, Agric Sector, Sex Sector</h3>
-      </div>
-      <div className="cat-box">
-        <img src={require("../assets/image8.jpg")} alt="" />
-        <div className="post-cat">Resources</div>
-        <h3>15 businesses you can start with little fundings</h3>
       </div>
     </div>
   );

@@ -1,10 +1,14 @@
 import React from "react";
+// import Navbar from "./Navbar";
 import renderHTML from "react-render-html";
+// import Moment from "react-moment";
+// import Home from "./Home";
 import Loader from "../loader.gif";
 import axios from "axios";
-// import Privacy from "./Privacy";
+import Privacy from "./Privacy";
+// import { getPosts } from "./GetData";
 
-class Terms extends React.Component {
+class SinglePost extends React.Component {
   constructor(props) {
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
@@ -48,7 +52,7 @@ class Terms extends React.Component {
 
     this.setState({ loading: true, localItems: localItems }, () => {
       axios
-        .get(`https://naspire.com/wp-json/wp/v2/pages/7021`)
+        .get(`https://naspire.com/wp-json/wp/v2/posts/${localItems}`)
         .then((res) => {
           console.log(res.data);
           if (Object.keys(res.data).length) {
@@ -87,6 +91,7 @@ class Terms extends React.Component {
                 </div>
               </div>
             </div>
+            <Privacy />
           </>
         ) : (
           ""
@@ -103,4 +108,4 @@ class Terms extends React.Component {
   }
 }
 
-export default Terms;
+export default SinglePost;

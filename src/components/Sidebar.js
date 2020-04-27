@@ -20,8 +20,8 @@ class Sidebar extends Component {
           <Link to="/marketResearch">
             <div className="nav-items main">MarketResearch</div>
           </Link>
-          <Link to="/advisory">
-            <div className="nav-items main">Advisory</div>
+          <Link to="/consulting">
+            <div className="nav-items main">Consulting</div>
           </Link>
           <Link to="/Subscriptions">
             <div className="nav-items main">Subscriptions</div>
@@ -39,7 +39,7 @@ class Sidebar extends Component {
             <div className="nav-items foot">Terms</div>
           </Link>
           <Link to="/Faq">
-            <div className="nav-items foot">Faq</div>
+            <div className="nav-items foot">FAQ</div>
           </Link>
         </Router>
       </div>

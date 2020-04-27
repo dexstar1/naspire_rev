@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import renderHTML from "react-render-html";
 import Loader from "../loader.gif";
 
-class Resources extends Component {
+class Consulting extends Component {
   constructor(props) {
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
@@ -72,7 +72,7 @@ class Resources extends Component {
       <React.Fragment>
         <>
           <div className="latest">
-            <h1 className="page-title-desc">Posts</h1>
+            <h1 className="page-title-desc">Insights</h1>
             {posts.length ? (
               <>
                 <div className="article">
@@ -130,5 +130,4 @@ class Resources extends Component {
     );
   }
 }
-
-export default Resources;
+export default Consulting;
