@@ -4,8 +4,9 @@ import Loader from "../loader.gif";
 import axios from "axios";
 import Privacy from "./Privacy";
 import Newsletter from "./Newsletter";
+import { Link } from "react-router-dom";
 
-class SinglePost extends React.Component {
+class PublicCategory extends React.Component {
   constructor(props) {
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
@@ -44,9 +45,9 @@ class SinglePost extends React.Component {
 
     console.log(thedata);
 
-    // this.setState({ name: thedata });
+    this.setState({ name: thedata });
 
-    // localStorage.setItem("name", thedata);
+    localStorage.setItem("name", thedata);
   }
 
   handleLink = (e) => {
@@ -61,9 +62,9 @@ class SinglePost extends React.Component {
     const localItems = localStorage.getItem("name");
     console.log(localItems);
 
-    this.setState({ loading: true, name: localItems }, () => {
+    this.setState({ loading: true, localItems: localItems }, () => {
       axios
-        .get(`https://naspire.com/wp-json/wp/v2/posts/${localItems}`)
+        .get(`https://naspire.com/wp-json/wp/v2/posts/6459`)
         .then((res) => {
           console.log(res.data);
           if (Object.keys(res.data).length) {
@@ -73,10 +74,7 @@ class SinglePost extends React.Component {
           }
         })
         .catch((err) =>
-          this.setState({
-            loading: false,
-            error: "something is wrong, <Link to=" / ">Go back</Link>",
-          })
+          this.setState({ loading: false, error: "something is wrong" })
         );
     });
   }
@@ -84,17 +82,6 @@ class SinglePost extends React.Component {
   render() {
     const { loading, post, error } = this.state;
 
-    function NewsletterPop() {
-      if (localStorage.getItem("email")) {
-        return <h3></h3>;
-      } else {
-        return (
-          <div className="newsletter-popUp">
-            <Newsletter />
-          </div>
-        );
-      }
-    }
     return (
       <React.Fragment>
         {/* <Navbar />  */}
@@ -106,26 +93,29 @@ class SinglePost extends React.Component {
         )}
         {Object.keys(post).length ? (
           <>
-            <NewsletterPop />
-            <div className="article">
-              <div className="latest">
-                <div className="mt-5 posts single-post">
-                  <div key={post.id}>
-                    <h1 className="page-title-desc">{post.title.rendered}</h1>
-                    <div>{renderHTML(post.content.rendered)}</div>
-                  </div>
-                </div>
-              </div>
-              <div className="ads">
-                <div className="cat-box">
+            <div key={post.id} className="cat-box">
+              <>
+                <div className="feat-cat-img">
                   <img
-                    src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
-                    alt="advertise with us"
+                    src={
+                      post.better_featured_image.media_details.sizes.medium
+                        .source_url
+                    }
+                    alt="naspire"
                   />
                 </div>
-              </div>
+                <Link
+                  ref={(Link) => (this.Link = Link)}
+                  onClick={() => localStorage.setItem("name", post.id)}
+                  to={`/post/${post.id}`}
+                  value={post.id}
+                  className="input-class post-title"
+                  onFocus={this.onChangeName}
+                >
+                  <h5 className="post-cat">{post.title.rendered}</h5>
+                </Link>
+              </>
             </div>
-            <Privacy />
           </>
         ) : (
           ""
@@ -137,4 +127,4 @@ class SinglePost extends React.Component {
   }
 }
 
-export default SinglePost;
+export default PublicCategory;

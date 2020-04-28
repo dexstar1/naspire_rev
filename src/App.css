@@ -108,6 +108,10 @@ button {
   box-shadow: 3px 0px 5px 0px #f7f7f7;
 }
 
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
 .sidebar > div {
   padding: 23px 45px 23px 45px;
 }
@@ -186,18 +190,43 @@ button {
   cursor: pointer;
 }
 
+.alert.alert-danger {
+  background-color: #b90000b3;
+  padding: 20px;
+  color: #fff;
+  width: 300px;
+  float: right;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
 .home .cat-box {
-  width: 32%;
+  width: 31%;
   float: left;
-  height: 225px;
+  height: 300px;
   /* border-bottom: 2px solid #f1f1f1; */
-  margin: 10px;
-  margin-left: 0px;
+  margin: 10px 10px;
+  box-shadow: 0px 0px 17px 2px #ececec;
+}
+
+.home .cat-box:hover {
+  box-shadow: none;
 }
 
 .home .cat-box img {
-  height: 175.5px;
+  min-height: 100%;
   width: 100%;
+}
+
+.home .cat-box form h4 {
+  margin-top: 0px !important;
+}
+
+.feat-cat-img {
+  height: 225px;
+  overflow: hidden;
 }
 
 .cat-box .post-cat,
@@ -208,7 +237,11 @@ button {
 }
 
 .post-cat {
-  display: none;
+  font-size: 16px;
+  font-family: lato;
+  margin: 10px 30px !important;
+  color: #363c3b;
+  font-weight: 500;
 }
 
 .home .cat-box h3 {
@@ -228,6 +261,12 @@ button {
 .post:hover h3.post-title {
   font-weight: bold !important;
   cursor: pointer;
+}
+
+.cat-box:hover h5 {
+  font-weight: bold !important;
+  cursor: pointer;
+  color: #42446e;
 }
 
 .featured {
@@ -507,9 +546,9 @@ article h6 {
 }
 
 form {
-  height: 230px !important;
+  /* height: 100% !important; */
   display: block;
-  padding: 10px 20px;
+  padding: 20px 15px;
   background-image: url("./assets/formbg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -541,7 +580,7 @@ input.newsletter-submit {
 }
 
 .home-advert {
-  height: 230px !important;
+  height: 100% !important;
 }
 
 textarea.consult-message {
@@ -607,4 +646,37 @@ form.consulting-form {
   font-size: 28px;
   color: #42246e;
   font-family: Lato;
+}
+
+.newsletter-popUp {
+  position: fixed;
+  z-index: 999;
+  background-color: #42426efa;
+  width: 100vw;
+  height: 100vh;
+}
+
+.newsletter-popUpForm {
+  background-image: none;
+  width: 300px;
+  margin: 0px 28%;
+  height: 400px !important;
+  text-align: center;
+  padding: 100px 0px;
+  overflow: hidden;
+}
+
+.newsletter-popUpForm input.newsletter-name,
+.newsletter-popUpForm input.newsletter-email,
+.newsletter-popUpForm input.newsletter-submit {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.newsletter-popUpForm input.newsletter-submit {
+  background-color: #92d0fb;
+}
+
+.no-newsletter {
+  color: #fff;
 }

@@ -22,6 +22,11 @@ import Terms from "./Terms";
 import Faq from "./Faq";
 import SinglePosts from "./SinglePosts";
 import HomeCarousel from "./Carousel";
+import CasestudyCategory from "./CasestudyCategory";
+import EmergingCategory from "./Emerging";
+import PublicCategory from "./PublicCategory";
+import IndustryCategory from "./industryCategory";
+import CareerCategory from "./CareerCategory";
 
 const routes = [
   {
@@ -262,12 +267,12 @@ function Homelayout() {
           Discover the latest business insights and industry trends in Nigeria
         </span>
       </h1>
-      <div className="cat-box">
-        <img src={require("../assets/image1.jpg")} alt="naspire" />
-        <div className="post-cat">Case Studies</div>
-        <h3>The marlian market</h3>
-      </div>
-      <div className="cat-box">
+      <CasestudyCategory />
+      <EmergingCategory />
+      <PublicCategory />
+      <IndustryCategory />
+      <CareerCategory />
+      {/* <div className="cat-box">
         <img src={require("../assets/image2.jpg")} alt="" />
         <div className="post-cat">Emerging market and opportunities</div>
         <h3>Naspire quarterly insights</h3>
@@ -286,17 +291,15 @@ function Homelayout() {
         <img src={require("../assets/image6.jpg")} alt="naspire" />
         <div className="post-cat">Career related</div>
         <h3>Skills for the future</h3>
-      </div>
+      </div> */}
 
-      <div className="cat-box">
-        {/* <img
+      {/* <img
           src="https://naspire.com/wp-content/uploads/2020/02/naspire-ebook.png"
           alt=""
         />
         <div className="post-cat">Industry Scoop</div>
         <h3>Beer industry, Agric Sector, Sex Sector</h3> */}
-        <HomeCarousel />
-      </div>
+      <HomeCarousel />
     </div>
   );
 }
