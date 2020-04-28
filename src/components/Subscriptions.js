@@ -116,7 +116,10 @@ class Subscription extends Component {
                 </div>
                 <div className="ads">
                   <div className="cat-box">
-                    <img src={"../assets/image9.png"} alt="naspire" />
+                    <img
+                      src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
+                      alt="advertise with us"
+                    />
                   </div>
                 </div>
               </>

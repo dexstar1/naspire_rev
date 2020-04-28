@@ -1,10 +1,9 @@
 import React from "react";
 import "../App.css";
-// import Sidebar from "./Sidebar";
-// import ReactDOM from "react-dom";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
 import Logo from "../logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import {
   faInstagram,
   faTwitter,
@@ -22,6 +21,7 @@ import Privacy from "./Privacy";
 import Terms from "./Terms";
 import Faq from "./Faq";
 import SinglePosts from "./SinglePosts";
+import HomeCarousel from "./Carousel";
 
 const routes = [
   {
@@ -71,19 +71,43 @@ const routes = [
 ];
 
 class DefaultLayout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      image: {},
+      postID: "",
+      error: "",
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ loading: true }, () => {
+      axios
+        .get(`https://naspire.com/wp-json/wp/v2/media/7025`)
+        .then((res) => {
+          if (Object.keys(res.data).length) {
+            this.setState({ loading: false, image: res.data });
+          } else {
+            this.setState({ loading: false, error: "No Posts Found" });
+          }
+        })
+        .catch((err) =>
+          this.setState({ loading: false, error: "something wrong" })
+        );
+    });
+  }
+
   render() {
-    return (
-      <>
-        <MainLayout />
-        {/* <Homelayout /> */}
-      </>
-    );
+    return <MainLayout />;
   }
 }
 
 export default DefaultLayout;
 
 function MainLayout() {
+  // const { loading, image, error } = this.state;
+
   return (
     <Router>
       <div className="sidebar">
@@ -183,6 +207,25 @@ function MainLayout() {
       </div>
 
       <div className="main">
+        {/* <React.Fragment>
+          {error && (
+            <div
+              className="alert alert-danger"
+              dangerouslySetInnerHTML={this.createMarkup(error)}
+            />
+          )}
+          const theImg ={" "}
+          {Object.keys(image).length ? (
+            <>
+              <div key={image}>
+                <img src={image.source_url} alt="naspire" />
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+          {loading && <img className="loader" src={Loader} alt="Loader" />}
+        </React.Fragment> */}
         <Switch>
           {routes.map((route, index) => (
             // Render more <Route>s with the same paths as
@@ -220,7 +263,7 @@ function Homelayout() {
         </span>
       </h1>
       <div className="cat-box">
-        <img src={"../assets/image1.jpg"} alt="" />
+        <img src={require("../assets/image1.jpg")} alt="naspire" />
         <div className="post-cat">Case Studies</div>
         <h3>The marlian market</h3>
       </div>
@@ -236,18 +279,23 @@ function Homelayout() {
       </div>
       <div className="cat-box">
         <img src={require("../assets/image5.jpg")} alt="" />
-        <div className="post-cat">Advertisement</div>
-        <h3>Advertise both Naspire and other companies/businesses</h3>
+        <div className="post-cat">Industry Scoop</div>
+        <h3>Beer Industry, Agric Sector, Sex Sector</h3>
       </div>
       <div className="cat-box">
-        <img src={require("../assets/image6.jpg")} alt="" />
+        <img src={require("../assets/image6.jpg")} alt="naspire" />
         <div className="post-cat">Career related</div>
         <h3>Skills for the future</h3>
       </div>
+
       <div className="cat-box">
-        <img src={require("../assets/image7.jpg")} alt="" />
+        {/* <img
+          src="https://naspire.com/wp-content/uploads/2020/02/naspire-ebook.png"
+          alt=""
+        />
         <div className="post-cat">Industry Scoop</div>
-        <h3>Beer industry, Agric Sector, Sex Sector</h3>
+        <h3>Beer industry, Agric Sector, Sex Sector</h3> */}
+        <HomeCarousel />
       </div>
     </div>
   );

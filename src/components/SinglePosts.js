@@ -1,12 +1,8 @@
 import React from "react";
-// import Navbar from "./Navbar";
 import renderHTML from "react-render-html";
-// import Moment from "react-moment";
-// import Home from "./Home";
 import Loader from "../loader.gif";
 import axios from "axios";
 import Privacy from "./Privacy";
-// import { getPosts } from "./GetData";
 
 class SinglePost extends React.Component {
   constructor(props) {
@@ -42,12 +38,7 @@ class SinglePost extends React.Component {
   });
 
   componentDidMount() {
-    // const wordPressSiteURL = getPosts.siteUrl;
-    // const postID = localStorage.getItem("id");
-    // const localItems = JSON.parse(localStorage.getItem("user"));
     const localItems = localStorage.getItem("name");
-    // const sObj = JSON.stringify(localItems.posts);
-    // const IdItem = JSON.stringify(sObj.id);
     console.log(localItems);
 
     this.setState({ loading: true, localItems: localItems }, () => {
@@ -83,11 +74,19 @@ class SinglePost extends React.Component {
           <>
             <div className="article">
               <div className="latest">
-                <div className="mt-5 posts">
+                <div className="mt-5 posts single-post">
                   <div key={post.id}>
                     <h1 className="page-title-desc">{post.title.rendered}</h1>
                     <div>{renderHTML(post.content.rendered)}</div>
                   </div>
+                </div>
+              </div>
+              <div className="ads">
+                <div className="cat-box">
+                  <img
+                    src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
+                    alt="advertise with us"
+                  />
                 </div>
               </div>
             </div>
@@ -97,11 +96,6 @@ class SinglePost extends React.Component {
           ""
         )}
 
-        <div className="ads">
-          <div className="cat-box">
-            <img src={"../assets/image9.png"} alt="naspire" />
-          </div>
-        </div>
         {loading && <img className="loader" src={Loader} alt="Loader" />}
       </React.Fragment>
     );

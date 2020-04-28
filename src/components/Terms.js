@@ -94,7 +94,10 @@ class Terms extends React.Component {
 
         <div className="ads">
           <div className="cat-box">
-            <img src={"../assets/image9.png"} alt="naspire" />
+            <img
+              src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
+              alt="advertise with us"
+            />
           </div>
         </div>
         {loading && <img className="loader" src={Loader} alt="Loader" />}

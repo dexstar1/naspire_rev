@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "../App.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import renderHTML from "react-render-html";
+// import { Link } from "react-router-dom";
+// import renderHTML from "react-render-html";
 import Loader from "../loader.gif";
 
 class Consulting extends Component {
@@ -72,57 +72,36 @@ class Consulting extends Component {
       <React.Fragment>
         <>
           <div className="latest">
-            <h1 className="page-title-desc">Insights</h1>
-            {posts.length ? (
-              <>
-                <div className="article">
-                  <div className="latest">
-                    {posts.map((post) => (
-                      <div className="post">
-                        <div className="post-meta" value={post.id}>
-                          <Link
-                            ref={(Link) => (this.Link = Link)}
-                            onClick={() =>
-                              localStorage.setItem("name", post.id)
-                            }
-                            to={`/post/${post.id}`}
-                            value={post.id}
-                            className="input-class post-title"
-                            onFocus={this.onChangeName}
-                          >
-                            {renderHTML(post.title.rendered)}
-                          </Link>
-
-                          <div className="post-author">
-                            {post._embedded.author[0].name}
-                          </div>
-                          <div className="post-time-date">{post.date}</div>
-                        </div>
-                        <div className="post-content">
-                          <div>{renderHTML(post.excerpt.rendered)}</div>
-                        </div>
-                        <div className="post-image">
-                          <img
-                            src={
-                              post.better_featured_image.media_details.sizes
-                                .medium.source_url
-                            }
-                            alt="naspire"
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="ads">
-                  <div className="cat-box">
-                    <img src={"../assets/image9.png"} alt="naspire" />
-                  </div>
-                </div>
-              </>
-            ) : (
-              ""
-            )}
+            <h1 className="page-title-desc"></h1>
+            <form
+              className="consulting-form"
+              // style={{
+              //   backgroundImage:
+              //     "url('https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif')",
+              // }}
+            >
+              <h3 className="consult-proposition">
+                Strategy. Supply Chain. Finance. Trainings
+              </h3>
+              <input
+                type="text"
+                className="consult-name"
+                name="name"
+                placeholder="Name"
+              />
+              <input
+                type="email"
+                className="consult-email"
+                name="email"
+                placeholder="Email"
+              />
+              <textarea
+                className="consult-message"
+                name="consult-message"
+                placeholder="Message"
+              ></textarea>
+              <h3 className="consult-submit">Submit</h3>
+            </form>
             {loading && <img className="loader" src={Loader} alt="Loader" />}
           </div>
         </>

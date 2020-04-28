@@ -44,6 +44,7 @@ body {
   position: relative;
   min-height: 100vh;
   font-family: Lato;
+  background-color: #fefefe;
 }
 
 h1,
@@ -64,10 +65,26 @@ button {
   background-color: #fff !important;
 }
 
+.singe-post {
+  width: 65%;
+}
+
 .posts img,
 .posts > div,
 .posts iframe {
   width: 100%;
+  height: 100%;
+}
+
+.posts > div p {
+  color: #4a4a4a;
+  font-weight: 400;
+  line-height: 24px;
+  font-size: 16px;
+}
+
+.posts > div h2 {
+  margin: 0px !important;
 }
 
 .logo {
@@ -310,7 +327,8 @@ button {
     width: 320px;
     float: left;
     position: fixed;
-    top: 10;
+    /* top: 10; */
+    margin-top: 40px;
     right: 0;
   }
 }
@@ -344,6 +362,7 @@ button {
   text-decoration: none;
   color: #42246e;
   font-weight: 600;
+  font-size: 20px;
 }
 
 .post-content {
@@ -485,4 +504,107 @@ article h6 {
   bottom: 0;
   right: 0;
   margin: auto;
+}
+
+form {
+  height: 230px !important;
+  display: block;
+  padding: 10px 20px;
+  background-image: url("./assets/formbg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  color: #fff;
+  width: 300px;
+}
+
+input.newsletter-name,
+input.newsletter-email {
+  width: 290px;
+  height: 40px;
+  margin: 5px 0px;
+  color: #000;
+  font-size: 14px;
+  font-family: lato;
+  padding-left: 10px;
+}
+
+input.newsletter-submit {
+  width: 300px;
+  height: 40px !important;
+  background-color: #42446e;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  border: none !important;
+  box-shadow: 2px 2px 2px #42446e;
+}
+
+.home-advert {
+  height: 230px !important;
+}
+
+textarea.consult-message {
+  width: 97.5%;
+  height: 100px;
+  margin: 20px 0px;
+  font-size: 14px;
+  color: #363c3b;
+  padding-left: 5px;
+}
+
+input.consult-email {
+  width: 48%;
+  height: 40px;
+  margin: 20px 5px;
+  font-size: 14px;
+  color: #363c3b;
+  padding-left: 5px;
+}
+
+input.consult-name {
+  width: 46%;
+  height: 40px;
+  font-size: 14px;
+  color: #fefefe;
+  padding-left: 5px;
+}
+input,
+textarea {
+  border: 1px solid #eee;
+  box-shadow: 2px 2px 4px 0px #42446e33;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid #42426e !important;
+  box-shadow: inset 2px 2px 4px 0px #42446e33;
+  outline: none !important;
+}
+
+form.consulting-form {
+  width: 50%;
+  margin: auto;
+  background-image: none;
+  height: 100vh;
+  padding: 50px 100px;
+}
+
+.consult-submit {
+  width: 200px;
+  font-size: 20px;
+  background-color: #424463;
+  text-align: center;
+  box-shadow: 2px 2px 8px #42246e7a;
+  padding: 10px;
+  margin: auto;
+  font-family: lato;
+}
+
+.consult-proposition {
+  text-align: center;
+  font-weight: 500;
+  font-size: 28px;
+  color: #42246e;
+  font-family: Lato;
 }
