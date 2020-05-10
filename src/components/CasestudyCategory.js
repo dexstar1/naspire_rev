@@ -64,11 +64,12 @@ class CasestudyCategory extends React.Component {
 
     this.setState({ loading: true, localItems: localItems }, () => {
       axios
-        .get(`https://naspire.com/wp-json/wp/v2/posts/6470`)
+        .get(`https://naspire.com/wp-json/wp/v2/posts?categories=406`)
         .then((res) => {
           console.log(res.data);
           if (Object.keys(res.data).length) {
             this.setState({ loading: false, post: res.data });
+            console.log(res.data);
           } else {
             this.setState({ loading: false, error: "No Posts Found" });
           }
@@ -93,12 +94,12 @@ class CasestudyCategory extends React.Component {
         )}
         {Object.keys(post).length ? (
           <>
-            <div key={post.id} className="cat-box">
+            <div key={post[0].id} className="cat-box">
               <>
                 <div className="feat-cat-img">
                   <img
                     src={
-                      post.better_featured_image.media_details.sizes.medium
+                      post[0].better_featured_image.media_details.sizes.medium
                         .source_url
                     }
                     alt="naspire"
@@ -106,14 +107,22 @@ class CasestudyCategory extends React.Component {
                 </div>
                 <Link
                   ref={(Link) => (this.Link = Link)}
-                  onClick={() => localStorage.setItem("name", post.id)}
+                  onClick={() => localStorage.setItem("name", post[0].id)}
                   to={`/post/${post.id}`}
-                  value={post.id}
+                  value={post[0].id}
                   className="input-class post-title"
                   onFocus={this.onChangeName}
                 >
-                  <h5 className="post-cat">{post.title.rendered}</h5>
+                  <h5 className="post-cat">
+                    {renderHTML(post[0].title.rendered)}
+                  </h5>
                 </Link>
+                <div class="post-meta-h">
+                  <div className="post-author">
+                    {/* {post._embedded.author.name} */}Naspire
+                  </div>
+                  <div className="post-time-date">{post[0].date}</div>
+                </div>
               </>
             </div>
           </>

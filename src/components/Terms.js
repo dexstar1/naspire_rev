@@ -2,6 +2,7 @@ import React from "react";
 import renderHTML from "react-render-html";
 import Loader from "../loader.gif";
 import axios from "axios";
+import Recent from "./Recent.js";
 // import Privacy from "./Privacy";
 
 class Terms extends React.Component {
@@ -98,6 +99,8 @@ class Terms extends React.Component {
               src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
               alt="advertise with us"
             />
+            <br></br>
+            <Recent />
           </div>
         </div>
         {loading && <img className="loader" src={Loader} alt="Loader" />}

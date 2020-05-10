@@ -98,7 +98,7 @@ class IndustryCategory extends React.Component {
                 <div className="feat-cat-img">
                   <img
                     src={
-                      post.better_featured_image.media_details.sizes.medium
+                      post.better_featured_image.media_details.sizes.shop_single
                         .source_url
                     }
                     alt="naspire"
@@ -114,6 +114,12 @@ class IndustryCategory extends React.Component {
                 >
                   <h5 className="post-cat">{post.title.rendered}</h5>
                 </Link>
+                <div class="post-meta-h">
+                  <div className="post-author">
+                    {/* {post._embedded.author.name} */}Naspire
+                  </div>
+                  <div className="post-time-date">{post.date}</div>
+                </div>
               </>
             </div>
           </>

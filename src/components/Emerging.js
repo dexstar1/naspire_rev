@@ -2,9 +2,8 @@ import React from "react";
 import renderHTML from "react-render-html";
 import Loader from "../loader.gif";
 import axios from "axios";
-import Privacy from "./Privacy";
-import Newsletter from "./Newsletter";
 import { Link } from "react-router-dom";
+// import { faClock } from "@fortawesome/free-brands-svg-icons";
 
 class EmergingCategory extends React.Component {
   constructor(props) {
@@ -64,7 +63,7 @@ class EmergingCategory extends React.Component {
 
     this.setState({ loading: true, localItems: localItems }, () => {
       axios
-        .get(`https://naspire.com/wp-json/wp/v2/posts/6466`)
+        .get(`https://naspire.com/wp-json/wp/v2/posts?categories=407`)
         .then((res) => {
           console.log(res.data);
           if (Object.keys(res.data).length) {
@@ -93,27 +92,33 @@ class EmergingCategory extends React.Component {
         )}
         {Object.keys(post).length ? (
           <>
-            <div key={post.id} className="cat-box">
+            <div key={post[0].id} className="cat-box">
               <>
                 <div className="feat-cat-img">
                   <img
                     src={
-                      post.better_featured_image.media_details.sizes.medium
-                        .source_url
+                      post[0].better_featured_image.media_details.sizes
+                        .medium_large.source_url
                     }
                     alt="naspire"
                   />
                 </div>
                 <Link
                   ref={(Link) => (this.Link = Link)}
-                  onClick={() => localStorage.setItem("name", post.id)}
-                  to={`/post/${post.id}`}
-                  value={post.id}
+                  onClick={() => localStorage.setItem("name", post[0].id)}
+                  to={`/post/${post[0].id}`}
+                  value={post[0].id}
                   className="input-class post-title"
                   onFocus={this.onChangeName}
                 >
-                  <h5 className="post-cat">{post.title.rendered}</h5>
+                  <h5 className="post-cat">{post[0].title.rendered}</h5>
                 </Link>
+                <div class="post-meta-h">
+                  <div className="post-author">
+                    {/* {post._embedded.author.name} */}Naspire
+                  </div>
+                  <div className="post-time-date">{post[0].date}</div>
+                </div>
               </>
             </div>
           </>

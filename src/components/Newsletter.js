@@ -33,8 +33,10 @@ class Newsletter extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const thename = this.state.name;
+    const thename = this.state.subname;
     const theemail = this.state.email;
+
+    this.setState({ name: this.state.name });
     this.setState({ subname: thename });
     this.setState({ email: theemail });
     localStorage.setItem("LoggedIn", true);
@@ -52,7 +54,7 @@ class Newsletter extends React.Component {
           <h4>Subscribe to get read more</h4>
           <input
             type="text"
-            name="name"
+            name="subname"
             className="newsletter-name"
             placeholder="Your Name"
             onChange={this.handleOnChange}

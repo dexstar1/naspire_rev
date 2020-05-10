@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import "../App.css";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React from "react";
 import renderHTML from "react-render-html";
 import Loader from "../loader.gif";
+import axios from "axios";
+import Recent from "./Recent.js";
+// import Privacy from "./Privacy";
 
-class Privacy extends Component {
+class Privacy extends React.Component {
   constructor(props) {
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
     this.Link = this.handleLink.bind(this);
     this.state = {
       loading: false,
-      posts: [],
+      post: {},
       postID: "",
       id: "",
       error: "",
@@ -34,101 +34,78 @@ class Privacy extends Component {
     this.Link.click();
   };
 
+  createMarkup = (data) => ({
+    __html: data,
+  });
+
   componentDidMount() {
-    const mydt = this.state.name;
-    localStorage.setItem("name", mydt);
-    this.setState({ loading: true }, () => {
+    // const wordPressSiteURL = getPosts.siteUrl;
+    // const postID = localStorage.getItem("id");
+    // const localItems = JSON.parse(localStorage.getItem("user"));
+    const localItems = localStorage.getItem("name");
+    // const sObj = JSON.stringify(localItems.posts);
+    // const IdItem = JSON.stringify(sObj.id);
+    console.log(localItems);
+
+    this.setState({ loading: true, localItems: localItems }, () => {
       axios
-        .get(`https://naspire.com/wp-json/wp/v2/posts?_embed`)
+        .get(`https://naspire.com/wp-json/wp/v2/pages/3890`)
         .then((res) => {
-          if (res.data.length) {
-            this.setState({ loading: false, posts: res.data, name: mydt });
-
-            this.userData = JSON.parse(localStorage.getItem("user"));
-
-            if (localStorage.getItem("name")) {
-              this.setState({
-                name: mydt,
-              });
-            } else {
-              this.setState({
-                name: mydt,
-              });
-            }
+          console.log(res.data);
+          if (Object.keys(res.data).length) {
+            this.setState({ loading: false, post: res.data });
           } else {
             this.setState({ loading: false, error: "No Posts Found" });
           }
         })
         .catch((err) =>
-          this.setState({ loading: false, error: "something wrong" })
+          this.setState({ loading: false, error: err.response.data.message })
         );
     });
   }
 
   render() {
-    const { loading, posts } = this.state;
+    const { loading, post, error } = this.state;
 
     return (
       <React.Fragment>
-        <>
-          <div className="latest">
-            <h1 className="page-title-desc">Posts</h1>
-            {posts.length ? (
-              <>
-                <div className="article">
-                  <div className="latest">
-                    {posts.map((post) => (
-                      <div className="post">
-                        <div className="post-meta" value={post.id}>
-                          <Link
-                            ref={(Link) => (this.Link = Link)}
-                            onClick={() =>
-                              localStorage.setItem("name", post.id)
-                            }
-                            to={`/post/${post.id}`}
-                            value={post.id}
-                            className="input-class post-title"
-                            onFocus={this.onChangeName}
-                          >
-                            {renderHTML(post.title.rendered)}
-                          </Link>
+        {/* <Navbar />  */}
+        {error && (
+          <div
+            className="alert alert-danger"
+            dangerouslySetInnerHTML={this.createMarkup(error)}
+          />
+        )}
+        {Object.keys(post).length ? (
+          <>
+            <div className="article">
+              <div className="latest">
+                <div className="mt-5 posts">
+                  <div key={post.id}>
+                    <h1 className="page-title-desc">
+                      {renderHTML(post.title.rendered)}
+                    </h1>
+                    <div>{renderHTML(post.content.rendered)}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
 
-                          <div className="post-author">
-                            {post._embedded.author[0].name}
-                          </div>
-                          <div className="post-time-date">{post.date}</div>
-                        </div>
-                        <div className="post-content">
-                          <div>{renderHTML(post.excerpt.rendered)}</div>
-                        </div>
-                        <div className="post-image">
-                          <img
-                            src={
-                              post.better_featured_image.media_details.sizes
-                                .medium.source_url
-                            }
-                            alt="naspire"
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="ads">
-                  <div className="cat-box">
-                    <img
-                      src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
-                      alt="advertise with us"
-                    />
-                  </div>
-                </div>
-              </>
-            ) : (
-              ""
-            )}
-            {loading && <img className="loader" src={Loader} alt="Loader" />}
+        <div className="ads">
+          <div className="cat-box">
+            <img
+              src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
+              alt="advertise with us"
+            />
+            <br></br>
+            <Recent />
           </div>
-        </>
+        </div>
+        {loading && <img className="loader" src={Loader} alt="Loader" />}
       </React.Fragment>
     );
   }

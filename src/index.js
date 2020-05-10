@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./fonts/Prata-Regular.ttf";
 import "./fonts/Lato-Light.ttf";
+import "./fonts/BreeSerif-Regular.ttf";
 
 ReactDOM.render(
   <React.StrictMode>

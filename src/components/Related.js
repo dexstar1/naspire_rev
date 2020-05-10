@@ -4,9 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import renderHTML from "react-render-html";
 import Loader from "../loader.gif";
-import Recent from "./Recent.js";
 
-class Resources extends Component {
+class Related extends Component {
   constructor(props) {
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
@@ -22,6 +21,9 @@ class Resources extends Component {
   }
 
   onChangeName(e, history) {
+    setTimeout(function () {
+      window.location.reload(false);
+    }, 2000);
     // const thedata = e.target.value;
     // console.log(thedata);
     // this.setState({ name: thedata });
@@ -70,7 +72,7 @@ class Resources extends Component {
       <React.Fragment>
         <>
           <div className="latest">
-            <h1 className="page-title-desc">Resources</h1>
+            <h1 className="page-title-desc">Related Posts</h1>
             {posts.length ? (
               <>
                 <div className="article">
@@ -112,16 +114,6 @@ class Resources extends Component {
                     ))}
                   </div>
                 </div>
-                <div className="ads">
-                  <div className="cat-box">
-                    <img
-                      src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
-                      alt="advertise with us"
-                    />
-                    <br></br>
-                    <Recent />
-                  </div>
-                </div>
               </>
             ) : (
               ""
@@ -134,4 +126,4 @@ class Resources extends Component {
   }
 }
 
-export default Resources;
+export default Related;

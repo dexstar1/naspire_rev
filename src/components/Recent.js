@@ -4,9 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import renderHTML from "react-render-html";
 import Loader from "../loader.gif";
-import Recent from "./Recent.js";
 
-class Resources extends Component {
+class Recent extends Component {
   constructor(props) {
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
@@ -22,6 +21,9 @@ class Resources extends Component {
   }
 
   onChangeName(e, history) {
+    setTimeout(function () {
+      window.location.reload(false);
+    }, 2000);
     // const thedata = e.target.value;
     // console.log(thedata);
     // this.setState({ name: thedata });
@@ -37,9 +39,10 @@ class Resources extends Component {
     // localStorage.setItem("name", mydt);
     this.setState({ loading: true }, () => {
       axios
-        .get(`https://naspire.com/wp-json/wp/v2/posts?_embed`)
+        .get(`https://naspire.com/wp-json/wp/v2/posts?_embed&per_page=5`)
         .then((res) => {
           if (res.data.length) {
+            console.log(res.data);
             this.setState({ loading: false, posts: res.data });
 
             this.userData = JSON.parse(localStorage.getItem("user"));
@@ -69,14 +72,23 @@ class Resources extends Component {
     return (
       <React.Fragment>
         <>
-          <div className="latest">
-            <h1 className="page-title-desc">Resources</h1>
+          <div className="Recent latest">
+            <h1 className="page-title-desc side">Recent Posts</h1>
             {posts.length ? (
               <>
                 <div className="article">
                   <div className="latest">
                     {posts.map((post) => (
                       <div className="post">
+                        <div className="post-image">
+                          <img
+                            src={
+                              post.better_featured_image.media_details.sizes
+                                .shop_single.source_url
+                            }
+                            alt="naspire"
+                          />
+                        </div>
                         <div className="post-meta" value={post.id}>
                           <Link
                             ref={(Link) => (this.Link = Link)}
@@ -90,36 +102,9 @@ class Resources extends Component {
                           >
                             {renderHTML(post.title.rendered)}
                           </Link>
-
-                          <div className="post-author">
-                            {post._embedded.author[0].name}
-                          </div>
-                          <div className="post-time-date">{post.date}</div>
-                        </div>
-                        <div className="post-content">
-                          <div>{renderHTML(post.excerpt.rendered)}</div>
-                        </div>
-                        <div className="post-image">
-                          <img
-                            src={
-                              post.better_featured_image.media_details.sizes
-                                .medium.source_url
-                            }
-                            alt="naspire"
-                          />
                         </div>
                       </div>
                     ))}
-                  </div>
-                </div>
-                <div className="ads">
-                  <div className="cat-box">
-                    <img
-                      src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
-                      alt="advertise with us"
-                    />
-                    <br></br>
-                    <Recent />
                   </div>
                 </div>
               </>
@@ -134,4 +119,4 @@ class Resources extends Component {
   }
 }
 
-export default Resources;
+export default Recent;

@@ -21,13 +21,10 @@ class Consulting extends Component {
   }
 
   onChangeName(e, history) {
-    const thedata = e.target.value;
-
-    console.log(thedata);
-
-    this.setState({ name: thedata });
-
-    localStorage.setItem("name", thedata);
+    // const thedata = e.target.value;
+    // console.log(thedata);
+    // this.setState({ name: thedata });
+    // localStorage.setItem("name", thedata);
   }
 
   handleLink = (e) => {
@@ -35,26 +32,26 @@ class Consulting extends Component {
   };
 
   componentDidMount() {
-    const mydt = this.state.name;
-    localStorage.setItem("name", mydt);
+    // const mydt = this.state.name;
+    // localStorage.setItem("name", mydt);
     this.setState({ loading: true }, () => {
       axios
         .get(`https://naspire.com/wp-json/wp/v2/posts?_embed`)
         .then((res) => {
           if (res.data.length) {
-            this.setState({ loading: false, posts: res.data, name: mydt });
+            this.setState({ loading: false, posts: res.data });
 
             this.userData = JSON.parse(localStorage.getItem("user"));
 
-            if (localStorage.getItem("name")) {
-              this.setState({
-                name: mydt,
-              });
-            } else {
-              this.setState({
-                name: mydt,
-              });
-            }
+            // if (localStorage.getItem("name")) {
+            //   this.setState({
+            //     name: mydt,
+            //   });
+            // } else {
+            //   this.setState({
+            //     name: mydt,
+            //   });
+            // }
           } else {
             this.setState({ loading: false, error: "No Posts Found" });
           }

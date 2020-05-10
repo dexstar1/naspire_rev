@@ -1,16 +1,8 @@
 import React from "react";
 import "../App.css";
-import { FaPhone, FaEnvelope } from "react-icons/fa";
-import Logo from "../logo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import {
-  faInstagram,
-  faTwitter,
-  faLinkedin,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Sidebar from "./Sidebar";
 import Insights from "./Insights";
 import Consulting from "./Consulting";
 import MarketResearch from "./MarketResearch";
@@ -27,11 +19,21 @@ import EmergingCategory from "./Emerging";
 import PublicCategory from "./PublicCategory";
 import IndustryCategory from "./industryCategory";
 import CareerCategory from "./CareerCategory";
+import Highlights from "./Highlights";
 
 const routes = [
   {
+    path: "/",
+    exact: "/",
+    main: () => <Homelayout />,
+  },
+  {
     path: "/Home",
     main: () => <Homelayout />,
+  },
+  {
+    path: "/Highlights",
+    main: () => <Highlights />,
   },
   {
     path: "/post/:id",
@@ -116,121 +118,10 @@ function MainLayout() {
   return (
     <Router>
       <div className="sidebar">
-        <div>
-          <div className="logo">
-            <img src={Logo} alt="" />
-          </div>
-          <li>
-            <Link to="/Home">
-              <div className="nav-items main">Home</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Insights">
-              <div className="nav-items main">Insights</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/marketResearch">
-              <div className="nav-items main">MarketResearch</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Consulting">
-              <div className="nav-items main">Consulting</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Subscriptions">
-              <div className="nav-items main">Subscriptions</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Resources">
-              <div className="nav-items main">Resources</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Opportunities">
-              <div className="nav-items main">Opportunities</div>
-            </Link>
-          </li>
-          <li className="more-btn">
-            <div className="nav-items main">More ...</div>
-          </li>
-          <hr></hr>
-          <li>
-            <Link to="/Privacy">
-              <div className="nav-items foot">Privacy</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Terms">
-              <div className="nav-items foot">Terms</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Faq">
-              <div className="nav-items foot">FAQ</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Faq">
-              <div className="nav-items foot">Careers</div>
-            </Link>
-          </li>
-
-          <hr></hr>
-          <li className="social-contact">
-            <div className="svg-n-text">
-              <div className="svg">
-                <FaPhone />
-              </div>
-              <div className="social-contact-text">Call Us - 08055364357</div>
-            </div>
-
-            <div className="svg-n-text">
-              <div className="svg">
-                <FaEnvelope />
-              </div>
-              <div className="social-contact-text">
-                Mail Us - vimbai@naspire.com
-              </div>
-            </div>
-          </li>
-          <li className="social-foot">
-            <FontAwesomeIcon icon={faFacebook} style={{ marginLeft: "0px" }} />
-            <FontAwesomeIcon icon={faInstagram} />
-            <FontAwesomeIcon icon={faLinkedin} />
-            <FontAwesomeIcon icon={faTwitter} />
-          </li>
-          <hr></hr>
-          <h6 className="copyright">
-            Copyright &copy;, Naspire, Sam Brooks Limited, 2020
-          </h6>
-        </div>
+        <Sidebar />
       </div>
 
       <div className="main">
-        {/* <React.Fragment>
-          {error && (
-            <div
-              className="alert alert-danger"
-              dangerouslySetInnerHTML={this.createMarkup(error)}
-            />
-          )}
-          const theImg ={" "}
-          {Object.keys(image).length ? (
-            <>
-              <div key={image}>
-                <img src={image.source_url} alt="naspire" />
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-          {loading && <img className="loader" src={Loader} alt="Loader" />}
-        </React.Fragment> */}
         <Switch>
           {routes.map((route, index) => (
             // Render more <Route>s with the same paths as
@@ -251,7 +142,7 @@ function MainLayout() {
 function Homelayout() {
   return (
     <div className="home">
-      <h1 className="page-title-desc">
+      <h1 className="page-title-desc home">
         <div style={{ width: "100%", color: "#42446e", marginBottom: "-15px" }}>
           Data is good. Insights are better.
         </div>
@@ -267,6 +158,7 @@ function Homelayout() {
           Discover the latest business insights and industry trends in Nigeria
         </span>
       </h1>
+      <Highlights />
       <CasestudyCategory />
       <EmergingCategory />
       <PublicCategory />

@@ -2,8 +2,9 @@ import React from "react";
 import renderHTML from "react-render-html";
 import Loader from "../loader.gif";
 import axios from "axios";
-import Privacy from "./Privacy";
+import Related from "./Related";
 import Newsletter from "./Newsletter";
+import Recent from "./Recent.js";
 
 class SinglePost extends React.Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class SinglePost extends React.Component {
       postID: "",
       id: "",
       error: "",
-      name: "",
     };
   }
 
@@ -61,13 +61,13 @@ class SinglePost extends React.Component {
     const localItems = localStorage.getItem("name");
     console.log(localItems);
 
-    this.setState({ loading: true, name: localItems }, () => {
+    this.setState({ loading: true }, () => {
       axios
         .get(`https://naspire.com/wp-json/wp/v2/posts/${localItems}`)
         .then((res) => {
           console.log(res.data);
           if (Object.keys(res.data).length) {
-            this.setState({ loading: false, post: res.data });
+            this.setState({ loading: false, post: res.data, name: localItems });
           } else {
             this.setState({ loading: false, error: "No Posts Found" });
           }
@@ -111,7 +111,9 @@ class SinglePost extends React.Component {
               <div className="latest">
                 <div className="mt-5 posts single-post">
                   <div key={post.id}>
-                    <h1 className="page-title-desc">{post.title.rendered}</h1>
+                    <h1 className="page-title-desc single">
+                      {post.title.rendered}
+                    </h1>
                     <div>{renderHTML(post.content.rendered)}</div>
                   </div>
                 </div>
@@ -122,10 +124,12 @@ class SinglePost extends React.Component {
                     src="https://blog.bannersnack.com/wp-content/uploads/2018/05/astronautsitterpreviewdribbble.gif"
                     alt="advertise with us"
                   />
+                  <br></br>
+                  <Recent />
                 </div>
               </div>
             </div>
-            <Privacy />
+            <Related />
           </>
         ) : (
           ""

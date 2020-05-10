@@ -1,8 +1,10 @@
 import React from "react";
 import "./App.css";
 
-import Home from "./components/Home";
+import DefaultLayout from "./components/Home";
 
-const App = () => <Home />;
+function App() {
+  return <DefaultLayout />;
+}
 
 export default App;
