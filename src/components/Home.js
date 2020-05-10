@@ -20,6 +20,9 @@ import PublicCategory from "./PublicCategory";
 import IndustryCategory from "./industryCategory";
 import CareerCategory from "./CareerCategory";
 import Highlights from "./Highlights";
+import MobileSidebar from "./MobileSidebar";
+import CheeseburgerMenu from "cheeseburger-menu";
+import HamburgerMenu from "react-hamburger-menu";
 
 const routes = [
   {
@@ -85,6 +88,7 @@ class DefaultLayout extends React.Component {
       image: {},
       postID: "",
       error: "",
+      menuOpen: false,
     };
   }
 
@@ -94,7 +98,7 @@ class DefaultLayout extends React.Component {
         .get(`https://naspire.com/wp-json/wp/v2/media/7025`)
         .then((res) => {
           if (Object.keys(res.data).length) {
-            this.setState({ loading: false, image: res.data });
+            this.setState({ loading: false, image: res.data, menuOpen: false });
           } else {
             this.setState({ loading: false, error: "No Posts Found" });
           }
@@ -105,22 +109,65 @@ class DefaultLayout extends React.Component {
     });
   }
 
+  openMenu() {
+    this.setState({ menuOpen: true });
+  }
+
+  closeMenu() {
+    this.setState({ menuOpen: false });
+  }
+
   render() {
-    return <MainLayout />;
+    return (
+      <div>
+        <MainLayout />
+      </div>
+    );
   }
 }
 
 export default DefaultLayout;
 
 function MainLayout() {
-  // const { loading, image, error } = this.state;
-
   return (
     <Router>
+      <MobileSidebar />
       <div className="sidebar">
         <Sidebar />
       </div>
 
+      {/* <CheeseburgerMenu
+        isOpen={this.state.menuOpen}
+        closeCallback={this.closeMenu.bind(this)}
+      >
+        <Sidebar closeCallback={this.closeMenu.bind(this)} />
+
+        <HamburgerMenu
+          isOpen={this.state.menuOpen}
+          menuClicked={this.closeMenu.bind(this)}
+          width={100}
+          height={24}
+          strokeWidth={3}
+          rotate={0}
+          color="black"
+          borderRadius={0}
+          animationDuration={0.5}
+          className="close"
+        />
+      </CheeseburgerMenu> */}
+
+      {/* <HamburgerMenu
+        isOpen={this.state.menuOpen}
+        menuClicked={this.closeMenu.bind(this)}
+        width={100}
+        height={24}
+        strokeWidth={3}
+        rotate={0}
+        color="black"
+        borderRadius={0}
+        animationDuration={0.5}
+        className="close"
+      /> */}
       <div className="main">
         <Switch>
           {routes.map((route, index) => (
@@ -143,20 +190,10 @@ function Homelayout() {
   return (
     <div className="home">
       <h1 className="page-title-desc home">
-        <div style={{ width: "100%", color: "#42446e", marginBottom: "-15px" }}>
-          Data is good. Insights are better.
-        </div>
-        <span
-          style={{
-            width: "100%",
-            fontSize: "16px",
-            fontWeight: "400",
-            fontFamily: "Lato",
-            color: "#000",
-          }}
-        >
+        <div className="headline-text">Data is good. Insights are better.</div>
+        <div className="headline-sub-text">
           Discover the latest business insights and industry trends in Nigeria
-        </span>
+        </div>
       </h1>
       <Highlights />
       <CasestudyCategory />
@@ -164,33 +201,6 @@ function Homelayout() {
       <PublicCategory />
       <IndustryCategory />
       <CareerCategory />
-      {/* <div className="cat-box">
-        <img src={require("../assets/image2.jpg")} alt="" />
-        <div className="post-cat">Emerging market and opportunities</div>
-        <h3>Naspire quarterly insights</h3>
-      </div>
-      <div className="cat-box">
-        <img src={require("../assets/image3.jpg")} alt="" />
-        <div className="post-cat">Public Sector</div>
-        <h3>States, FG, LGA Government agencies, BOI, SMEDAN</h3>
-      </div>
-      <div className="cat-box">
-        <img src={require("../assets/image5.jpg")} alt="" />
-        <div className="post-cat">Industry Scoop</div>
-        <h3>Beer Industry, Agric Sector, Sex Sector</h3>
-      </div>
-      <div className="cat-box">
-        <img src={require("../assets/image6.jpg")} alt="naspire" />
-        <div className="post-cat">Career related</div>
-        <h3>Skills for the future</h3>
-      </div> */}
-
-      {/* <img
-          src="https://naspire.com/wp-content/uploads/2020/02/naspire-ebook.png"
-          alt=""
-        />
-        <div className="post-cat">Industry Scoop</div>
-        <h3>Beer industry, Agric Sector, Sex Sector</h3> */}
       <HomeCarousel />
     </div>
   );
